@@ -9,7 +9,7 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
-  ThemeData app = ThemeData.dark();
+  ThemeData app = ThemeData.dark(useMaterial3: true);
 
   MyApp({super.key});
 
@@ -23,6 +23,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: _router,
+      
     );
   }
 }
