@@ -60,6 +60,7 @@ class BeerListViewState extends State<BeerListView> {
       Consumer(
         builder: (context, ref, child) {
           return PagedListView<int, Pokemon>(
+            
             pagingController: _pagingController,
             builderDelegate: PagedChildBuilderDelegate<Pokemon>(
               itemBuilder: (context, item, index) => PokemonListItem(
