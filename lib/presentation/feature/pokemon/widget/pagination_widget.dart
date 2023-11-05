@@ -8,8 +8,8 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:riverpod/src/state_notifier_provider.dart';
 
 class BeerListView extends StatefulWidget {
-  const BeerListView(List<Pokemon> pokemonList, {super.key});
-
+  const BeerListView(List<Pokemon> pokemonList,this.viewModel,  {super.key});
+  final PokemonListViewModel viewModel;
   @override
   _BeerListViewState createState() => _BeerListViewState();
 }
@@ -18,7 +18,7 @@ class _BeerListViewState extends State<BeerListView> {
   static const _pageSize = 10;
 
   final PagingController<int, Pokemon> _pagingController =
-      PagingController(firstPageKey: 0);
+      PagingController(firstPageKey: 1);
 
   @override
   void initState() {
@@ -31,15 +31,18 @@ class _BeerListViewState extends State<BeerListView> {
   Future<void> _fetchPage(int pageKey, pageSize) async {
     try {
       //final newItems = await RemoteApi.getBeerList(pageKey, _pageSize);
-      final newItems = List.generate(
-          pageSize, (index) => Pokemon( pageKey.toInt() + index));
+      //final newItems = List.generate(
+      //    pageSize, (index) => Pokemon( pageKey.toInt() + index));
+        
+      final newItems=await widget.viewModel.getPokemonUseCase.getPokemonListUseCase(_pageSize, pageKey);
+
       final isLastPage = newItems.length < _pageSize;
       if (isLastPage) {
         _pagingController.appendLastPage(newItems);
       } else {
         final nextPageKey = pageKey + newItems.length;
 
-        if(nextPageKey-newItems.length<100)//
+        if(nextPageKey-newItems.length<=1292)//
         _pagingController.appendPage(newItems, nextPageKey);
       }
     } catch (error) {
@@ -52,13 +55,17 @@ class _BeerListViewState extends State<BeerListView> {
       // Don't worry about displaying progress or error indicators on screen; the
       // package takes care of that. If you want to customize them, use the
       // [PagedChildBuilderDelegate] properties.
-      PagedListView<int, Pokemon>(
+      Consumer(
+        builder: (context, ref, child) {
+          return PagedListView<int, Pokemon>(
         pagingController: _pagingController,
         builderDelegate: PagedChildBuilderDelegate<Pokemon>(
           itemBuilder: (context, item, index) => PokemonListItem(
             pokemon: item,
           ),
         ),
+      );
+        },
       );
 
   @override
@@ -121,6 +128,7 @@ class _CustomExpandableTileCardState extends State<CustomExpandableTileCard> {
         final pokemonList = ref.watch(pokemonListViewModelProvider);
         final pokemonListViewModel = ref.read(pokemonListViewModelProvider.notifier);
         final id=widget.pokemon.id;
+        final name=widget.pokemon.name;
         return PageStorage(
           bucket: pageStorageBucket,
           child: ExpansionTileCard(
@@ -130,13 +138,11 @@ class _CustomExpandableTileCardState extends State<CustomExpandableTileCard> {
                 width: 100,
                 child: CachedNetworkImage(
                     imageUrl:
-                        "https://img.fruugo.com/product/4/02/350353024_max.jpg")),
-            title:  Text('Tap me!'+id.toString()),
-            subtitle: const Text('I expand!'),
+                        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$id.png")),
+            title:  Text(name),
+            subtitle:  Text(name),
             children: <Widget>[
-              ElevatedButton(onPressed: () {
-                pokemonListViewModel.fetchPokemon(10, 0);
-              }, child: child),
+             
               const Divider(
                 thickness: 1.0,
                 height: 1.0,

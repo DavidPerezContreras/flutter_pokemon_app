@@ -12,7 +12,9 @@ class GetPokemonUseCase {
 
   GetPokemonUseCase({required this.pokemonRepository});
 
-  Future<List<Pokemon>> getPokemonListUseCase(int limit, int offset){
+  Future<List<Pokemon>> getPokemonListUseCase(int limit, int offset)async {
+    await Future.delayed(const Duration(milliseconds: 500));
+    print("delayed");
     return pokemonRepository.getPokemonList(limit, offset);
   }
 

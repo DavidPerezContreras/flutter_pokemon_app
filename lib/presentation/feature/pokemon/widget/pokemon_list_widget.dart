@@ -16,14 +16,16 @@ class PokemonListWidget extends ConsumerWidget {
     //Estos datos se presentan.
 
     final pokemonList = ref.watch(pokemonListViewModelProvider);
+    final viewModel = ref.watch(pokemonListViewModelProvider.notifier);
 
+    
     
 
     return Scaffold(
       body: SizedBox(
         width: screenSize.width,
         height: screenSize.height,
-        child: BeerListView(pokemonList),
+        child: BeerListView(pokemonList,viewModel),
       ),
     );
   }

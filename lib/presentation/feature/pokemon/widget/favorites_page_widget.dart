@@ -4,6 +4,7 @@ import 'package:flutter_app/presentation/feature/pokemon/widget/pagination_widge
 import 'package:flutter_app/presentation/feature/pokemon/viewmodel/pokemon_list_viewmodel.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+/*
 class MyFavoritesPage extends ConsumerWidget {
   const MyFavoritesPage({super.key});
 
@@ -17,8 +18,9 @@ class MyFavoritesPage extends ConsumerWidget {
       body: SizedBox(
         width: screenSize.width,
         height: screenSize.height,
-        child: BeerListView(pokemonList),
+        child: BeerListView(pokemonList,),
       ),
     );
   }
 }
+*/

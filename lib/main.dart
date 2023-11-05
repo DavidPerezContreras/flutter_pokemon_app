@@ -40,12 +40,12 @@ final GoRouter _router = GoRouter(
       path: '/',
       builder: _homeBuilder,
       routes: <RouteBase>[
-        GoRoute(
+        /*GoRoute(
           path: 'details',
           builder: (BuildContext context, GoRouterState state) {
             return const MyFavoritesPage();
           },
-        ),
+        ),*/
         GoRoute(path: 'home', builder: _homeBuilder),
       ],
     ),
