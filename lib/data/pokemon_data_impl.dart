@@ -1,7 +1,6 @@
 import 'package:flutter_app/datasource/feature/pokemon/remote/pokemon_remote_impl.dart';
 import 'package:flutter_app/domain/feature/pokemon/repository/pokemon_repository.dart';
 import 'package:flutter_app/model/pokemon.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PokemonDataImpl implements PokemonRepository {
   const PokemonDataImpl({required this.pokemonRemoteImpl});

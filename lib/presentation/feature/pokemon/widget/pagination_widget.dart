@@ -42,8 +42,10 @@ class _BeerListViewState extends State<BeerListView> {
       } else {
         final nextPageKey = pageKey + newItems.length;
 
-        if (nextPageKey - newItems.length <= 1292) //
+        if (nextPageKey - newItems.length <= 1292) {
+          //
           _pagingController.appendPage(newItems, nextPageKey);
+        }
       }
     } catch (error) {
       _pagingController.error = error;
@@ -141,7 +143,7 @@ class _CustomExpandableTileCardState extends State<CustomExpandableTileCard> {
                 child: CachedNetworkImage(
                     imageUrl:
                         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id + 1}.png")),
-            title: Text(name,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+            title: Text(name,style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
             subtitle: Text(name),
             children: <Widget>[
               const Divider(

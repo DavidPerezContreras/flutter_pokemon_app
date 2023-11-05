@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/presentation/feature/pokemon/widget/favorites_page_widget.dart';
 import 'package:flutter_app/presentation/feature/pokemon/widget/home_page_widget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
