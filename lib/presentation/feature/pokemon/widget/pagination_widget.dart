@@ -119,17 +119,17 @@ class _CustomExpandableTileCardState extends State<CustomExpandableTileCard> {
         final id = widget.pokemon.id;
         final name = widget.pokemon.name;
 
-        Color primaryColor = Theme.of(context).colorScheme.primary;
-        Color lightPrimaryColor = Color.fromARGB(255, primaryColor.red - 10,
-            primaryColor.green - 10, primaryColor.blue - 10);
+        Color cardColor = Theme.of(context).cardColor;
+        Color darkCardColor = Color.fromARGB(255, cardColor.red - 10,
+            cardColor.green - 10, cardColor.blue - 10);
 
         return PageStorage(
           bucket: pageStorageBucket,
           child: ExpansionTileCard(
-            baseColor: lightPrimaryColor,
+            baseColor: darkCardColor,
             key: widget.cardA,
             leading: Container(
-                color: primaryColor,
+                color: cardColor,
                 height: 100,
                 width: 100,
                 child: CachedNetworkImage(

@@ -22,6 +22,7 @@ class PokemonListWidget extends ConsumerWidget {
     
 
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: SizedBox(
         width: screenSize.width,
         height: screenSize.height,
