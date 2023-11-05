@@ -8,7 +8,7 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
-  ThemeData app = ThemeData.dark(useMaterial3: true);
+  final ThemeData app = ThemeData.dark(useMaterial3: true);
 
   MyApp({super.key});
 

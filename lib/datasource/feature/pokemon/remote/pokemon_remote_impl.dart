@@ -11,7 +11,6 @@ class PokemonRemoteImpl {
         await http.get(Uri.parse('$_baseUrl?limit=$limit&offset=$offset'));
 
     if (response.statusCode >= 200 && response.statusCode < 300) {
-      print("200");
       List<Pokemon> pokemonList = <Pokemon>[];
       final decodedData = json.decode(response.body);
 
@@ -21,7 +20,6 @@ class PokemonRemoteImpl {
         for (var i = 0; i < results.length; i++) {
           final pokemonData = results[i];
           String name = pokemonData['name'];
-          String url = pokemonData['url'];
           pokemonList.add(Pokemon(offset * limit + i, name));
         }
       }

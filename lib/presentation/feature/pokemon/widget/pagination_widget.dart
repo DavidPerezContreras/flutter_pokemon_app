@@ -10,10 +10,10 @@ class BeerListView extends StatefulWidget {
   const BeerListView(List<Pokemon> pokemonList, this.viewModel, {super.key});
   final PokemonListViewModel viewModel;
   @override
-  _BeerListViewState createState() => _BeerListViewState();
+  BeerListViewState createState() => BeerListViewState();
 }
 
-class _BeerListViewState extends State<BeerListView> {
+class BeerListViewState extends State<BeerListView> {
   static const _pageSize = 10;
 
   final PagingController<int, Pokemon> _pagingController =
@@ -78,9 +78,9 @@ class _BeerListViewState extends State<BeerListView> {
 }
 
 class PokemonListItem extends StatefulWidget {
-  PokemonListItem({super.key, required this.pokemon});
+  const PokemonListItem({super.key, required this.pokemon});
 
-  Pokemon pokemon;
+  final Pokemon pokemon;
 
   @override
   State<PokemonListItem> createState() => _PokemonListItemState();
@@ -89,26 +89,22 @@ class PokemonListItem extends StatefulWidget {
 class _PokemonListItemState extends State<PokemonListItem> {
   @override
   Widget build(BuildContext context) {
-
-    var screenSize = MediaQuery.of(context).size;
-
     return Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Container(
-            child: CustomExpandableTileCard(
-          pokemon: widget.pokemon,
-          key: widget.key,
-        )));
+        child: CustomExpandableTileCard(
+                  pokemon: widget.pokemon,
+                  key: widget.key,
+                ));
   }
 }
 
 class CustomExpandableTileCard extends StatefulWidget {
   CustomExpandableTileCard({super.key, required this.pokemon});
 
-  Pokemon pokemon;
+  final Pokemon pokemon;
 
   final GlobalKey<ExpansionTileCardState> cardA = GlobalKey();
-  
+
   @override
   State<CustomExpandableTileCard> createState() =>
       _CustomExpandableTileCardState();
@@ -120,10 +116,6 @@ class _CustomExpandableTileCardState extends State<CustomExpandableTileCard> {
   Widget build(BuildContext context) {
     return Consumer(
       builder: (context, ref, child) {
-        final pokemonList = ref.watch(pokemonListViewModelProvider);
-        final pokemonListViewModel =
-            ref.read(pokemonListViewModelProvider.notifier);
-
         final id = widget.pokemon.id;
         final name = widget.pokemon.name;
 
@@ -137,13 +129,16 @@ class _CustomExpandableTileCardState extends State<CustomExpandableTileCard> {
             baseColor: lightPrimaryColor,
             key: widget.cardA,
             leading: Container(
-              color: primaryColor,
+                color: primaryColor,
                 height: 100,
                 width: 100,
                 child: CachedNetworkImage(
                     imageUrl:
                         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id + 1}.png")),
-            title: Text(name,style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+            title: Text(
+              name,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
             subtitle: Text(name),
             children: <Widget>[
               const Divider(
