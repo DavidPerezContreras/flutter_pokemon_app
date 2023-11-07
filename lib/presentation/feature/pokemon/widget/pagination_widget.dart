@@ -28,6 +28,9 @@ class BeerListViewState extends State<BeerListView> {
   }
 
   Future<void> _fetchPage(int pageKey, pageSize) async {
+
+    const MAX_PAGES=1292;
+
     try {
       //final newItems = await RemoteApi.getBeerList(pageKey, _pageSize);
       //final newItems = List.generate(
@@ -42,7 +45,7 @@ class BeerListViewState extends State<BeerListView> {
       } else {
         final nextPageKey = pageKey + newItems.length;
 
-        if (nextPageKey - newItems.length <= 1292) {
+        if (nextPageKey - newItems.length <= MAX_PAGES) {
           //
           _pagingController.appendPage(newItems, nextPageKey);
         }

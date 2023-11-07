@@ -1,33 +1,26 @@
-import 'package:flutter_app/data/pokemon_data_impl.dart';
-import 'package:flutter_app/datasource/feature/pokemon/remote/pokemon_remote_impl.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_app/domain/feature/pokemon/usecase/get_pokemon_usecase.dart';
 import 'package:flutter_app/model/pokemon.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 //PROVIDED CACHE
-class PokemonListViewModel extends StateNotifier<List<Pokemon>> {
-  PokemonListViewModel({required this.getPokemonUseCase}) : super([]);
+
+
+
+class PokemonListViewModel extends ChangeNotifier {
+  PokemonListViewModel({required this.getPokemonUseCase}) : super();
   GetPokemonUseCase getPokemonUseCase;
+  
+  List<Pokemon> pokemonList=[];
+
 
   void setPokemonList(List<Pokemon> pokemonList) {
-    state = pokemonList;
+    pokemonList = pokemonList;
+    notifyListeners();
   }
 
   Future<void> fetchPokemon(int limit, int offset) async {
-    state = await getPokemonUseCase.getPokemonListUseCase(limit, offset);
+    pokemonList= await getPokemonUseCase.getPokemonListUseCase(limit, offset);
+    notifyListeners();
   }
 }
 
-//DEPENDENCY INJECTION
-final pokemonListViewModelProvider =
-    StateNotifierProvider<PokemonListViewModel, List<Pokemon>>(
-  (ref) {
-    return PokemonListViewModel(
-      getPokemonUseCase: GetPokemonUseCase(
-        pokemonRepository: PokemonDataImpl(
-          pokemonRemoteImpl: PokemonRemoteImpl(),
-        ),
-      ),
-    );
-  },
-);

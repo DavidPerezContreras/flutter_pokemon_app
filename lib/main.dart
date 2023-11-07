@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/presentation/feature/pokemon/widget/page/all_page.dart';
+import 'package:flutter_app/presentation/feature/pokemon/widget/page/favorites_page.dart';
+
 import 'package:flutter_app/presentation/feature/pokemon/widget/home_page_widget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-
 ThemeData customTheme = ThemeData(
   // Define the primary color for the app
   primaryColor: Colors.blue,
-  
+
   // Define the color scheme
-  colorScheme: ColorScheme.light(
+  colorScheme: const ColorScheme.light(
     primary: Colors.blue, // Primary color
     secondary: Color.fromARGB(255, 47, 0, 255), // Secondary color
     onPrimary: Colors.white, // Color for texts on primary color
@@ -17,13 +19,12 @@ ThemeData customTheme = ThemeData(
   ),
 
   // Define the app bar theme
-  appBarTheme: AppBarTheme(
+  appBarTheme: const AppBarTheme(
     color: Color.fromARGB(255, 0, 18, 55), // Color for app bar
-    
   ),
 
   // Define text theme
-  textTheme: TextTheme(
+  textTheme: const TextTheme(
     bodyText1: TextStyle(
       fontSize: 16.0,
       color: Colors.black, // Default text color
@@ -33,7 +34,8 @@ ThemeData customTheme = ThemeData(
 
   // Define button theme
   buttonTheme: ButtonThemeData(
-    buttonColor: const Color.fromARGB(255, 33, 243, 233), // Default button color
+    buttonColor:
+        const Color.fromARGB(255, 33, 243, 233), // Default button color
     textTheme: ButtonTextTheme.primary, // Text style for buttons
   ),
 
@@ -45,8 +47,6 @@ ThemeData customTheme = ThemeData(
 
   // Define other theme attributes like icon theme, input decoration, etc. if needed
 );
-
-
 
 void main() {
   runApp(ProviderScope(child: MyApp()));
@@ -64,35 +64,42 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return MaterialApp(
+      
       debugShowCheckedModeBanner: false,
-      routerConfig: _router,
-      theme: customTheme,
+      home: MyNavigationPage(),
     );
   }
 }
 
-Widget _homeBuilder(BuildContext context, GoRouterState state) {
+Widget _allBuilder(BuildContext context, GoRouterState state) {
   return const Directionality(
     textDirection: TextDirection.ltr,
-    child: MyHomePage(),
+    child: AllPage(),
   );
 }
 
+Widget _favoritesBuilder(BuildContext context, GoRouterState state) {
+  return const Directionality(
+    textDirection: TextDirection.ltr,
+    child: FavoritesPage(),
+  );
+}
+
+
+
+/*
 final GoRouter _router = GoRouter(
   routes: <RouteBase>[
     GoRoute(
       path: '/',
-      builder: _homeBuilder,
+      builder: _allBuilder,
       routes: <RouteBase>[
-        /*GoRoute(
-          path: 'details',
-          builder: (BuildContext context, GoRouterState state) {
-            return const MyFavoritesPage();
-          },
-        ),*/
-        GoRoute(path: 'home', builder: _homeBuilder),
+
+        GoRoute(path: 'home', builder: _allBuilder),
+        GoRoute(path: 'favorites', builder: _favoritesBuilder),
       ],
     ),
   ],
 );
+*/
