@@ -5,6 +5,7 @@ import 'package:flutter_app/presentation/feature/pokemon/widget/page/about_me_pa
 import 'package:flutter_app/presentation/feature/pokemon/widget/page/all_page.dart';
 import 'package:flutter_app/presentation/feature/pokemon/widget/page/favorites_page.dart';
 import 'package:flutter_app/presentation/feature/pokemon/widget/pokemon_list_widget.dart';
+import 'package:flutter_app/presentation/feature/settings/widget/settings_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MyNavigationPage extends StatefulWidget {
@@ -33,24 +34,18 @@ class _MyNavigationPageState extends State<MyNavigationPage> {
         appBar: AppBar(
           title: const Text("flutter_pokemon_app"),
           actions: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.comment),
-              tooltip: 'Comment Icon',
-              onPressed: () {},
-            ), //IconButton
+            
             IconButton(
               icon: const Icon(Icons.settings),
               tooltip: 'Setting Icon',
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=>SettingsPageWidget()));
+              },
             ), //IconButton
           ], //<Widget>[]
           backgroundColor: Colors.greenAccent[400],
           elevation: 50.0,
-          leading: IconButton(
-            icon: const Icon(Icons.menu),
-            tooltip: 'Menu Icon',
-            onPressed: () {},
-          ),
+          
           systemOverlayStyle: SystemUiOverlayStyle.light,
         ), //AppBar,
         bottomNavigationBar: BottomNavigationBar(

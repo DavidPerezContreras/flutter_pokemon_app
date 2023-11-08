@@ -13,10 +13,10 @@ class PokemonListViewModel extends ChangeNotifier {
   List<Pokemon> pokemonList=[];
 
 
-  void setPokemonList(List<Pokemon> pokemonList) {
+  /*void setPokemonList(List<Pokemon> pokemonList) {
     pokemonList = pokemonList;
     notifyListeners();
-  }
+  }*/
 
   Future<void> fetchPokemon(int limit, int offset) async {
     pokemonList= await getPokemonUseCase.getPokemonListUseCase(limit, offset);

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/presentation/feature/pokemon/widget/page/all_page.dart';
 import 'package:flutter_app/presentation/feature/pokemon/widget/page/favorites_page.dart';
 
-import 'package:flutter_app/presentation/feature/pokemon/widget/home_page_widget.dart';
+import 'package:flutter_app/presentation/feature/pokemon/widget/navigation_widget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -41,7 +41,7 @@ ThemeData customTheme = ThemeData(
 
   // Define card theme
   cardTheme: CardTheme(
-    color: Colors.white, // Color for cards
+    color: Color.fromARGB(112, 255, 255, 255), // Color for cards
     elevation: 2.0, // Elevation for cards
   ),
 
@@ -71,35 +71,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-/*
-Widget _allBuilder(BuildContext context, GoRouterState state) {
-  return const Directionality(
-    textDirection: TextDirection.ltr,
-    child: AllPage(),
-  );
-}
-
-Widget _favoritesBuilder(BuildContext context, GoRouterState state) {
-  return const Directionality(
-    textDirection: TextDirection.ltr,
-    child: FavoritesPage(),
-  );
-}
-*/
-
-
-/*
-final GoRouter _router = GoRouter(
-  routes: <RouteBase>[
-    GoRoute(
-      path: '/',
-      builder: _allBuilder,
-      routes: <RouteBase>[
-
-        GoRoute(path: 'home', builder: _allBuilder),
-        GoRoute(path: 'favorites', builder: _favoritesBuilder),
-      ],
-    ),
-  ],
-);
-*/
