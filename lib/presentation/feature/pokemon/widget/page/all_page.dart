@@ -11,9 +11,12 @@ class AllPage extends StatefulWidget {
   State<AllPage> createState() => _AllPageState();
 }
 
-class _AllPageState extends State<AllPage>{
+class _AllPageState extends State<AllPage> with AutomaticKeepAliveClientMixin{
   @override
   Widget build(BuildContext context) {
     return  PokemonListWidget();
   }
+  
+  @override
+  bool get wantKeepAlive => true;
 }

@@ -9,6 +9,6 @@ class AboutMePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Expanded(child: Container(color: const Color.fromARGB(255, 255, 0, 0),));
+    return  Container(color: const Color.fromARGB(255, 255, 0, 0),);
   }
 }

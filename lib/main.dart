@@ -71,7 +71,7 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
+/*
 Widget _allBuilder(BuildContext context, GoRouterState state) {
   return const Directionality(
     textDirection: TextDirection.ltr,
@@ -85,7 +85,7 @@ Widget _favoritesBuilder(BuildContext context, GoRouterState state) {
     child: FavoritesPage(),
   );
 }
-
+*/
 
 
 /*

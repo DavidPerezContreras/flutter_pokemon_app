@@ -5,55 +5,67 @@ import 'package:flutter_app/presentation/feature/pokemon/widget/page/all_page.da
 import 'package:flutter_app/presentation/feature/pokemon/widget/page/favorites_page.dart';
 import 'package:flutter_app/presentation/feature/pokemon/widget/pokemon_list_widget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 class MyNavigationPage extends StatefulWidget {
-  MyNavigationPage({super.key});
-  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  MyNavigationPage({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _MyNavigationPageState();
+  _MyNavigationPageState createState() => _MyNavigationPageState();
 }
 
 class _MyNavigationPageState extends State<MyNavigationPage> {
-  var _navigationIndex = 0;
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  int _navigationIndex = 0;
+  late List<Page<dynamic>> pages;
+
+  MaterialPageRoute materialAllPageRoute= MaterialPageRoute(builder: (BuildContext context)=> const AllPage());
+
+  @override
+  void initState() {
+    super.initState();
+
+  }
 
   @override
   Widget build(BuildContext context) {
+
+    switch(_navigationIndex){
+      case 0:
+    pages = [
+      MaterialPage(child: AllPage()),
+      MaterialPage(child: FavoritesPage()),
+      MaterialPage(child: AboutMePage()),
+    ];
+      break;
+      case 1:
+    pages = [
+      MaterialPage(child: AllPage()),
+      MaterialPage(child: FavoritesPage()),
+      MaterialPage(child: AboutMePage()),
+    ];
+      break;
+      case 2:
+    pages = [
+      MaterialPage(child: AllPage()),
+      MaterialPage(child: FavoritesPage()),
+      MaterialPage(child: AboutMePage()),
+    ];
+      break;
+    }
+    pages = [
+      MaterialPage(child: AllPage()),
+      MaterialPage(child: FavoritesPage()),
+      MaterialPage(child: AboutMePage()),
+    ];
+
+
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _navigationIndex,
         onTap: (int index) {
+          
           setState(() {
             _navigationIndex = index;
           });
-
-          switch (index) {
-            case 0:
-              Navigator.push(
-                  widget.navigatorKey.currentContext!,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => const AllPage()));
-              break;
-
-            case 1:
-              Navigator.push(
-                  widget.navigatorKey.currentContext!,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          const FavoritesPage()));
-              break;
-
-            case 2:
-              Navigator.push(
-                  widget.navigatorKey.currentContext!,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => const AboutMePage()));
-              break;
-            default:
-              Center(
-                child: Text("Error: Page not found"),
-              );
-          }
         },
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -71,29 +83,9 @@ class _MyNavigationPageState extends State<MyNavigationPage> {
         ],
         selectedItemColor: Colors.blue,
       ),
-      appBar: AppBar(
-        title: Text(_navigationIndex.toString()),
-        backgroundColor: Colors.blue, // Customize the app bar color
-        actions: [
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {
-              // Action for search icon
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {
-              // Action for settings icon
-            },
-          ),
-        ],
-      ),
-      backgroundColor: Theme.of(context).colorScheme.background,
-      body: Navigator(
-          key: widget.navigatorKey,
-          onPopPage: (route, result) => route.didPop(result),
-          pages: [MaterialPage(child: AllPage())]),
+      body: IndexedStack(
+        index: _navigationIndex,
+        children: [AllPage(),FavoritesPage(),AboutMePage()],)
     );
   }
 }

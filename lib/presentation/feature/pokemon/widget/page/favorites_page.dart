@@ -6,9 +6,10 @@ import 'package:flutter_app/presentation/feature/pokemon/widget/pokemon_list_wid
 class FavoritesPage extends StatelessWidget {
   const FavoritesPage({super.key});
 
-
   @override
   Widget build(BuildContext context) {
-    return  Expanded(child: Container(color: Colors.black,));
+    return Container(
+      color: Color.fromARGB(255, 0, 0, 0),
+    );
   }
 }
