@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/presentation/feature/pokemon/widget/page/all_page.dart';
-import 'package:flutter_app/presentation/feature/pokemon/widget/page/favorites_page.dart';
-
 import 'package:flutter_app/presentation/feature/pokemon/widget/navigation_widget.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 ThemeData customTheme = ThemeData(
   // Define the primary color for the app
@@ -49,25 +44,34 @@ ThemeData customTheme = ThemeData(
 );
 
 void main() {
-  runApp(ProviderScope(child: MyApp()));
+  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  final ThemeData app = ThemeData.dark(useMaterial3: true);
-
   MyApp({super.key});
-
+  ValueNotifier<ThemeData> themeNotifier =
+      ValueNotifier<ThemeData>(ThemeData.dark());
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
   @override
+  void initState() {
+    widget.themeNotifier.addListener(() {
+      setState(
+        () {},
+      );
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      
+      theme: widget.themeNotifier.value,
       debugShowCheckedModeBanner: false,
-      home: MyNavigationPage(),
+      home: MyNavigationPage(widget.themeNotifier),
     );
   }
 }

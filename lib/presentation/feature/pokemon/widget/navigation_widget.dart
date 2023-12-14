@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_app/model/pokemon.dart';
 import 'package:flutter_app/presentation/feature/pokemon/widget/page/about_me_page.dart';
 import 'package:flutter_app/presentation/feature/pokemon/widget/page/all_page.dart';
 import 'package:flutter_app/presentation/feature/pokemon/widget/page/favorites_page.dart';
-import 'package:flutter_app/presentation/feature/pokemon/widget/pokemon_list_widget.dart';
 import 'package:flutter_app/presentation/feature/settings/widget/settings_page.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MyNavigationPage extends StatefulWidget {
-  MyNavigationPage({Key? key}) : super(key: key);
-
+  MyNavigationPage(this.themeNotifier, {Key? key}) : super(key: key);
+  ValueNotifier<ThemeData> themeNotifier;
   @override
   _MyNavigationPageState createState() => _MyNavigationPageState();
 }
@@ -34,18 +31,19 @@ class _MyNavigationPageState extends State<MyNavigationPage> {
         appBar: AppBar(
           title: const Text("flutter_pokemon_app"),
           actions: <Widget>[
-            
             IconButton(
               icon: const Icon(Icons.settings),
               tooltip: 'Setting Icon',
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=>SettingsPageWidget()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                        SettingsPageWidget(widget.themeNotifier)));
               },
             ), //IconButton
           ], //<Widget>[]
           backgroundColor: Colors.greenAccent[400],
           elevation: 50.0,
-          
+
           systemOverlayStyle: SystemUiOverlayStyle.light,
         ), //AppBar,
         bottomNavigationBar: BottomNavigationBar(
@@ -73,7 +71,7 @@ class _MyNavigationPageState extends State<MyNavigationPage> {
         ),
         body: IndexedStack(
           index: _navigationIndex,
-          children: [AllPage(), FavoritesPage(), AboutMePage()],
+          children: const [AllPage(), FavoritesPage(), AboutMePage()],
         ));
   }
 }
