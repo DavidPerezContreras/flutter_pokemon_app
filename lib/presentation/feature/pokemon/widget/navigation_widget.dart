@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_app/presentation/feature/pokemon/widget/page/about_me_page.dart';
 import 'package:flutter_app/presentation/feature/pokemon/widget/page/all_page.dart';
 import 'package:flutter_app/presentation/feature/pokemon/widget/page/favorites_page.dart';
-import 'package:flutter_app/presentation/feature/settings/widget/settings_page.dart';
 
 class MyNavigationPage extends StatefulWidget {
   const MyNavigationPage(this.themeNotifier, {Key? key}) : super(key: key);
@@ -30,17 +29,7 @@ class _MyNavigationPageState extends State<MyNavigationPage> {
     return Scaffold(
         appBar: AppBar(
           title: const Text("flutter_pokemon_app"),
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.settings),
-              tooltip: 'Setting Icon',
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        SettingsPageWidget(widget.themeNotifier)));
-              },
-            ), //IconButton
-          ], //<Widget>[]
+          //<Widget>[]
           backgroundColor: Colors.greenAccent[400],
           elevation: 50.0,
 

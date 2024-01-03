@@ -1,7 +1,7 @@
 // ignore_for_file: unused_import
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/model/pokemon.dart';
+import 'package:flutter_app/domain/pokemon/model/pokemon.dart';
 import 'package:flutter_app/presentation/feature/pokemon/widget/pokemon_list_widget.dart';
 
 //ruta /home

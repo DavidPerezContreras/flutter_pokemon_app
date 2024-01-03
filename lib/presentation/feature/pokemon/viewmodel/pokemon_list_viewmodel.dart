@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/domain/feature/pokemon/usecase/get_pokemon_usecase.dart';
-import 'package:flutter_app/model/pokemon.dart';
+import 'package:flutter_app/domain/pokemon/usecase/get_pokemon_usecase.dart';
+import 'package:flutter_app/domain/pokemon/model/pokemon.dart';
 
 class PokemonListViewModel extends ChangeNotifier {
   PokemonListViewModel({required this.getPokemonUseCase});

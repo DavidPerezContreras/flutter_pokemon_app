@@ -1,5 +1,5 @@
-import 'package:flutter_app/domain/feature/pokemon/repository/pokemon_repository.dart';
-import 'package:flutter_app/model/pokemon.dart';
+import 'package:flutter_app/domain/pokemon/repository/pokemon_repository.dart';
+import 'package:flutter_app/domain/pokemon/model/pokemon.dart';
 
 class GetPokemonUseCase {
   GetPokemonUseCase({required this.pokemonRepository});

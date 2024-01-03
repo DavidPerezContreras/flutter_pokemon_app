@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/model/pokemon.dart';
+import 'package:flutter_app/domain/pokemon/model/pokemon.dart';
 import 'package:flutter_app/presentation/feature/pokemon/viewmodel/pokemon_list_viewmodel.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
