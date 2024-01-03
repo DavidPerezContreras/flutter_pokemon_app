@@ -16,7 +16,6 @@ class PokemonRemoteImpl {
       if (decodedData.containsKey('results')) {
         List<dynamic> results = decodedData['results'];
 
-        // Hacer 10 peticiones de forma asíncrona y esperamos a que acaben todas para obtener los 10 detalles
         List<Future> futures = [];
         for (var i = 0; i < results.length; i++) {
           final pokemonData = results[i];
@@ -24,10 +23,8 @@ class PokemonRemoteImpl {
           futures.add(fetchPokemonDetails(url));
         }
 
-        // Esperar a que todas las peticiones se completen
         List responses = await Future.wait(futures);
 
-        // Generar el modelo completo con todos los detalles
         for (var i = 0; i < responses.length; i++) {
           final pokemonDetails = responses[i];
           int id = pokemonDetails['id'];
@@ -44,8 +41,7 @@ class PokemonRemoteImpl {
 
       return pokemonList;
     } else {
-      return fetchPokemon(
-          limit, offset); // Recursividad hasta que de un status code 200-299
+      return fetchPokemon(limit, offset);
     }
   }
 

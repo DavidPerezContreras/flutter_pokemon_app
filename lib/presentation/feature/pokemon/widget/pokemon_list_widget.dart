@@ -29,7 +29,7 @@ class _PokemonListWidgetState extends State<NavigationWidget> {
       key: widget.key,
       width: double.infinity,
       height: double.infinity,
-      child: BeerListView(widget.pokemonListViewModel),
+      child: PokemonListWidget(widget.pokemonListViewModel),
     );
   }
 }

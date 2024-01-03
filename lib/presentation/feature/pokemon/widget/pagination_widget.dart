@@ -5,14 +5,14 @@ import 'package:flutter_app/domain/pokemon/model/pokemon.dart';
 import 'package:flutter_app/presentation/feature/pokemon/viewmodel/pokemon_list_viewmodel.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
-class BeerListView extends StatefulWidget {
-  const BeerListView(this.viewModel, {super.key});
+class PokemonListWidget extends StatefulWidget {
+  const PokemonListWidget(this.viewModel, {super.key});
   final PokemonListViewModel viewModel;
   @override
-  State<BeerListView> createState() => BeerListViewState();
+  State<PokemonListWidget> createState() => PokemonListWidgetState();
 }
 
-class BeerListViewState extends State<BeerListView> {
+class PokemonListWidgetState extends State<PokemonListWidget> {
   static const _pageSize = 10;
 
   final PagingController<int, Pokemon> _pagingController =
@@ -112,22 +112,28 @@ class _CustomExpandableTileCardState extends State<CustomExpandableTileCard> {
       key: widget.key,
       bucket: pageStorageBucket,
       child: ExpansionTileCard(
-        baseColor: darkCardColor,
+        trailing: null,
+        baseColor: Color.fromARGB(255, 225, 226, 236),
         key: widget.cardA,
         leading: Container(
             key: widget.key,
-            color: cardColor,
-            height: 100,
+            height: 200,
             width: 100,
             child: CachedNetworkImage(
+                fit: BoxFit.fitHeight,
                 key: widget.key,
-                imageUrl:
-                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id + 1}.png")),
-        title: Text(
-          name,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                imageUrl: widget.pokemon.officialArtwork)),
+        title: Container(
+          padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+          color: Colors.grey,
+          height: 100,
+          alignment: Alignment.centerLeft,
+          child: Text(
+            name,
+            style: const TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+          ),
         ),
-        subtitle: Text(key: widget.key, name),
         children: <Widget>[
           Divider(
             key: widget.key,

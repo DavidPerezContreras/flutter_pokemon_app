@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/presentation/feature/pokemon/widget/page/about_me_page.dart';
 import 'package:flutter_app/presentation/feature/pokemon/widget/page/all_page.dart';
-import 'package:flutter_app/presentation/feature/pokemon/widget/page/favorites_page.dart';
 
 class MyNavigationPage extends StatefulWidget {
   const MyNavigationPage(this.themeNotifier, {Key? key}) : super(key: key);
@@ -27,14 +26,6 @@ class _MyNavigationPageState extends State<MyNavigationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("flutter_pokemon_app"),
-          //<Widget>[]
-          backgroundColor: Colors.greenAccent[400],
-          elevation: 50.0,
-
-          systemOverlayStyle: SystemUiOverlayStyle.light,
-        ), //AppBar,
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _navigationIndex,
           onTap: (int index) {
@@ -48,10 +39,6 @@ class _MyNavigationPageState extends State<MyNavigationPage> {
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.favorite),
-              label: 'Favorites',
-            ),
-            BottomNavigationBarItem(
               icon: Icon(Icons.person),
               label: 'About me',
             ),
@@ -60,7 +47,7 @@ class _MyNavigationPageState extends State<MyNavigationPage> {
         ),
         body: IndexedStack(
           index: _navigationIndex,
-          children: const [AllPage(), FavoritesPage(), AboutMePage()],
+          children: const [AllPage(), AboutMePage()],
         ));
   }
 }
