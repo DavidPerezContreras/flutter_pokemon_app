@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:expansion_tile_card/expansion_tile_card.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app/domain/pokemon/model/pokemon.dart';
 import 'package:flutter_app/presentation/feature/pokemon/viewmodel/pokemon_list_viewmodel.dart';
@@ -86,11 +86,9 @@ class _PokemonListItemState extends State<PokemonListItem> {
 }
 
 class CustomExpandableTileCard extends StatefulWidget {
-  CustomExpandableTileCard({super.key, required this.pokemon});
+  const CustomExpandableTileCard({super.key, required this.pokemon});
 
   final Pokemon pokemon;
-
-  final GlobalKey<ExpansionTileCardState> cardA = GlobalKey();
 
   @override
   State<CustomExpandableTileCard> createState() =>
@@ -103,23 +101,22 @@ class _CustomExpandableTileCardState extends State<CustomExpandableTileCard> {
   final pageStorageBucket = PageStorageBucket();
   @override
   Widget build(BuildContext context) {
-    final id = widget.pokemon.id;
     final name = capitalize(widget.pokemon.name);
 
     return PageStorage(
-      key: widget.cardA,
+      key: Key(widget.pokemon.id.toString()),
       bucket: pageStorageBucket,
       child: Card(
-        color: Color.fromARGB(255, 225, 226, 236),
+        color: const Color.fromARGB(255, 225, 226, 236),
         child: ExpansionTile(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
           ),
-          tilePadding: EdgeInsets.all(0),
-          trailing: SizedBox.shrink(),
-          backgroundColor: Color.fromARGB(255, 225, 226, 236),
+          tilePadding: const EdgeInsets.all(0),
+          trailing: const SizedBox.shrink(),
+          backgroundColor: const Color.fromARGB(255, 225, 226, 236),
           title: Container(
-            padding: EdgeInsets.fromLTRB(10, 20, 0, 20),
+            padding: const EdgeInsets.fromLTRB(10, 20, 0, 20),
             color: Colors.grey,
             height: 80,
             alignment: Alignment.centerLeft,
@@ -131,7 +128,7 @@ class _CustomExpandableTileCardState extends State<CustomExpandableTileCard> {
                   fontSize: 20),
             ),
           ),
-          leading: Container(
+          leading: SizedBox(
               key: widget.key,
               height: 200,
               width: 100,
@@ -140,7 +137,7 @@ class _CustomExpandableTileCardState extends State<CustomExpandableTileCard> {
                   key: widget.key,
                   imageUrl: widget.pokemon.officialArtwork)),
           children: <Widget>[
-            Container(
+            SizedBox(
               height: 150,
               child: GridView.count(
                 crossAxisCount: 2,
@@ -148,9 +145,9 @@ class _CustomExpandableTileCardState extends State<CustomExpandableTileCard> {
                 children: [
                   for (var item in widget.pokemon.abilities)
                     Padding(
-                      padding: EdgeInsets.fromLTRB(10, 30, 10, 30),
+                      padding: const EdgeInsets.fromLTRB(10, 30, 10, 30),
                       child: Container(
-                        color: Color.fromARGB(50, 255, 0, 0),
+                        color: const Color.fromARGB(50, 255, 0, 0),
                         alignment: Alignment.center,
                         child: Text(
                           capitalize(item),
