@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app/model/pokemon.dart';
 import 'package:flutter_app/presentation/feature/pokemon/widget/pokemon_list_widget.dart';
@@ -13,6 +15,6 @@ class AllPage extends StatefulWidget {
 class _AllPageState extends State<AllPage> {
   @override
   Widget build(BuildContext context) {
-    return NavigationWidget();
+    return NavigationWidget(key: widget.key);
   }
 }

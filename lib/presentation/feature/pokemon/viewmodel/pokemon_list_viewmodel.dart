@@ -4,7 +4,7 @@ import 'package:flutter_app/model/pokemon.dart';
 
 class PokemonListViewModel extends ChangeNotifier {
   PokemonListViewModel({required this.getPokemonUseCase});
-  GetPokemonUseCase getPokemonUseCase;
+  final GetPokemonUseCase getPokemonUseCase;
 
   List<Pokemon> pokemonList = [];
 

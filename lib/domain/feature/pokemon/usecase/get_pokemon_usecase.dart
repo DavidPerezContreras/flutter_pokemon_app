@@ -3,10 +3,9 @@ import 'package:flutter_app/model/pokemon.dart';
 
 class GetPokemonUseCase {
   GetPokemonUseCase({required this.pokemonRepository});
+  final PokemonRepository pokemonRepository;
 
   Future<List<Pokemon>> getPokemonListUseCase(int limit, int offset) async {
     return pokemonRepository.getPokemonList(limit, offset);
   }
-
-  PokemonRepository pokemonRepository;
 }

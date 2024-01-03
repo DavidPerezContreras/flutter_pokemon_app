@@ -44,13 +44,12 @@ ThemeData customTheme = ThemeData(
 );
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  MyApp({super.key});
-  ValueNotifier<ThemeData> themeNotifier =
-      ValueNotifier<ThemeData>(ThemeData.dark());
+  const MyApp({super.key});
+
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -58,7 +57,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
-    widget.themeNotifier.addListener(() {
+    themeNotifier.addListener(() {
       setState(
         () {},
       );
@@ -66,12 +65,16 @@ class _MyAppState extends State<MyApp> {
     super.initState();
   }
 
+  ValueNotifier<ThemeData> themeNotifier =
+      ValueNotifier<ThemeData>(ThemeData.dark());
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: widget.themeNotifier.value,
+      key: widget.key,
+      theme: themeNotifier.value,
       debugShowCheckedModeBanner: false,
-      home: MyNavigationPage(widget.themeNotifier),
+      home: MyNavigationPage(themeNotifier),
     );
   }
 }

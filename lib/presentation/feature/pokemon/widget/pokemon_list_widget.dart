@@ -9,7 +9,7 @@ import 'package:flutter_app/presentation/feature/pokemon/widget/pagination_widge
 class NavigationWidget extends StatefulWidget {
   NavigationWidget({super.key});
 
-  PokemonListViewModel pokemonListViewModel = PokemonListViewModel(
+  final PokemonListViewModel pokemonListViewModel = PokemonListViewModel(
     getPokemonUseCase: GetPokemonUseCase(
       pokemonRepository: PokemonDataImpl(
         pokemonRemoteImpl: PokemonRemoteImpl(),
@@ -23,11 +23,10 @@ class NavigationWidget extends StatefulWidget {
 }
 
 class _PokemonListWidgetState extends State<NavigationWidget> {
-  var _navigationIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
+      key: widget.key,
       width: double.infinity,
       height: double.infinity,
       child: BeerListView(widget.pokemonListViewModel),

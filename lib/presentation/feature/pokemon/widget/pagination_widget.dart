@@ -9,7 +9,7 @@ class BeerListView extends StatefulWidget {
   const BeerListView(this.viewModel, {super.key});
   final PokemonListViewModel viewModel;
   @override
-  BeerListViewState createState() => BeerListViewState();
+  State<BeerListView> createState() => BeerListViewState();
 }
 
 class BeerListViewState extends State<BeerListView> {
@@ -28,10 +28,6 @@ class BeerListViewState extends State<BeerListView> {
 
   Future<void> _fetchPage(int pageKey, pageSize) async {
     try {
-      //final newItems = await RemoteApi.getBeerList(pageKey, _pageSize);
-      //final newItems = List.generate(
-      //    pageSize, (index) => Pokemon( pageKey.toInt() + index));
-
       final newItems = await widget.viewModel.getPokemonUseCase
           .getPokemonListUseCase(_pageSize, pageKey);
 
@@ -113,35 +109,42 @@ class _CustomExpandableTileCardState extends State<CustomExpandableTileCard> {
         255, cardColor.red - 10, cardColor.green - 10, cardColor.blue - 10);
 
     return PageStorage(
+      key: widget.key,
       bucket: pageStorageBucket,
       child: ExpansionTileCard(
         baseColor: darkCardColor,
         key: widget.cardA,
         leading: Container(
+            key: widget.key,
             color: cardColor,
             height: 100,
             width: 100,
             child: CachedNetworkImage(
+                key: widget.key,
                 imageUrl:
                     "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id + 1}.png")),
         title: Text(
           name,
           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
-        subtitle: Text(name),
+        subtitle: Text(key: widget.key, name),
         children: <Widget>[
-          const Divider(
+          Divider(
+            key: widget.key,
             thickness: 1.0,
             height: 1.0,
           ),
           Align(
+            key: widget.key,
             alignment: Alignment.centerLeft,
             child: Padding(
+              key: widget.key,
               padding: const EdgeInsets.symmetric(
                 horizontal: 16.0,
                 vertical: 8.0,
               ),
               child: Text(
+                key: widget.key,
                 """Hi there, I'm a drop-in replacement for Flutter's ExpansionTile.
       
       Use me any time you think your app could benefit from being just a bit more Material.

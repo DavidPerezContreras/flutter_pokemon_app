@@ -7,6 +7,7 @@ class FavoritesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      key: key,
       color: Color.fromARGB(255, 0, 0, 0),
     );
   }

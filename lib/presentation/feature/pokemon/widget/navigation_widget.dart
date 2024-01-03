@@ -6,10 +6,10 @@ import 'package:flutter_app/presentation/feature/pokemon/widget/page/favorites_p
 import 'package:flutter_app/presentation/feature/settings/widget/settings_page.dart';
 
 class MyNavigationPage extends StatefulWidget {
-  MyNavigationPage(this.themeNotifier, {Key? key}) : super(key: key);
-  ValueNotifier<ThemeData> themeNotifier;
+  const MyNavigationPage(this.themeNotifier, {Key? key}) : super(key: key);
+  final ValueNotifier<ThemeData> themeNotifier;
   @override
-  _MyNavigationPageState createState() => _MyNavigationPageState();
+  State<MyNavigationPage> createState() => _MyNavigationPageState();
 }
 
 class _MyNavigationPageState extends State<MyNavigationPage> {

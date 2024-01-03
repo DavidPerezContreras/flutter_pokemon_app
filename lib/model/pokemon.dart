@@ -1,6 +1,6 @@
 class Pokemon {
-  Pokemon(this.id, this.name);
+  const Pokemon(this.id, this.name);
 
-  int id;
-  String name;
+  final int id;
+  final String name;
 }
