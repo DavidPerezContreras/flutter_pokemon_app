@@ -112,6 +112,9 @@ class _CustomExpandableTileCardState extends State<CustomExpandableTileCard> {
       child: Card(
         color: Color.fromARGB(255, 225, 226, 236),
         child: ExpansionTile(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ),
           tilePadding: EdgeInsets.all(0),
           trailing: SizedBox.shrink(),
           backgroundColor: Color.fromARGB(255, 225, 226, 236),
@@ -137,34 +140,31 @@ class _CustomExpandableTileCardState extends State<CustomExpandableTileCard> {
                   key: widget.key,
                   imageUrl: widget.pokemon.officialArtwork)),
           children: <Widget>[
-            Divider(
-              key: widget.key,
-              thickness: 1.0,
-              height: 1.0,
-            ),
-            Align(
-              key: widget.key,
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                key: widget.key,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16.0,
-                  vertical: 8.0,
-                ),
-                child: Text(
-                  key: widget.key,
-                  """Hi there, I'm a drop-in replacement for Flutter's ExpansionTile.
-        
-        Use me any time you think your app could benefit from being just a bit more Material.
-        
-        These buttons control the next card down!""",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(fontSize: 16, color: Colors.black),
-                ),
+            Container(
+              height: 150,
+              child: GridView.count(
+                crossAxisCount: 2,
+                childAspectRatio: 2,
+                children: [
+                  for (var item in widget.pokemon.abilities)
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(10, 30, 10, 30),
+                      child: Container(
+                        color: Color.fromARGB(50, 255, 0, 0),
+                        alignment: Alignment.center,
+                        child: Text(
+                          capitalize(item),
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 84, 84, 84),
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                ],
               ),
-            ),
+            )
           ],
           onExpansionChanged: (bool expanded) {},
         ),

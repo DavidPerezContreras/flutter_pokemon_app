@@ -13,7 +13,7 @@ class AboutMePage extends StatelessWidget {
           alignment: Alignment.center,
           color: Colors.lightBlue[50],
           padding: const EdgeInsets.all(16.0),
-          child: SingleChildScrollView(
+          child: const SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[

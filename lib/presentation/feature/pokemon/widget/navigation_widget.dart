@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_app/presentation/feature/pokemon/widget/page/about_me_page.dart';
 import 'package:flutter_app/presentation/feature/pokemon/widget/page/all_page.dart';
 
@@ -26,6 +25,7 @@ class _MyNavigationPageState extends State<MyNavigationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.white,
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _navigationIndex,
           onTap: (int index) {
