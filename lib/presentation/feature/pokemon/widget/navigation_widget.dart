@@ -14,7 +14,7 @@ class _MyNavigationPageState extends State<MyNavigationPage> {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   int _navigationIndex = 0;
   late List<Page<dynamic>> pages;
-
+  List<String> items = ['Home', 'About'];
   MaterialPageRoute materialAllPageRoute =
       MaterialPageRoute(builder: (BuildContext context) => const AllPage());
 
@@ -33,16 +33,12 @@ class _MyNavigationPageState extends State<MyNavigationPage> {
               _navigationIndex = index;
             });
           },
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'About me',
-            ),
-          ],
+          items: List.generate(items.length, (index) {
+            return BottomNavigationBarItem(
+              icon: Icon(index == 0 ? Icons.home : Icons.person),
+              label: items[index],
+            );
+          }),
           selectedItemColor: Colors.blue,
         ),
         body: IndexedStack(

@@ -98,72 +98,76 @@ class CustomExpandableTileCard extends StatefulWidget {
 }
 
 class _CustomExpandableTileCardState extends State<CustomExpandableTileCard> {
+  String capitalize(String s) => s[0].toUpperCase() + s.substring(1);
+
   final pageStorageBucket = PageStorageBucket();
   @override
   Widget build(BuildContext context) {
     final id = widget.pokemon.id;
-    final name = widget.pokemon.name;
-
-    Color cardColor = Theme.of(context).cardColor;
-    Color darkCardColor = Color.fromARGB(
-        255, cardColor.red - 10, cardColor.green - 10, cardColor.blue - 10);
+    final name = capitalize(widget.pokemon.name);
 
     return PageStorage(
-      key: widget.key,
+      key: widget.cardA,
       bucket: pageStorageBucket,
-      child: ExpansionTileCard(
-        trailing: null,
-        baseColor: Color.fromARGB(255, 225, 226, 236),
-        key: widget.cardA,
-        leading: Container(
-            key: widget.key,
-            height: 200,
-            width: 100,
-            child: CachedNetworkImage(
-                fit: BoxFit.fitHeight,
-                key: widget.key,
-                imageUrl: widget.pokemon.officialArtwork)),
-        title: Container(
-          padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
-          color: Colors.grey,
-          height: 100,
-          alignment: Alignment.centerLeft,
-          child: Text(
-            name,
-            style: const TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
-          ),
-        ),
-        children: <Widget>[
-          Divider(
-            key: widget.key,
-            thickness: 1.0,
-            height: 1.0,
-          ),
-          Align(
-            key: widget.key,
+      child: Card(
+        color: Color.fromARGB(255, 225, 226, 236),
+        child: ExpansionTile(
+          tilePadding: EdgeInsets.all(0),
+          trailing: SizedBox.shrink(),
+          backgroundColor: Color.fromARGB(255, 225, 226, 236),
+          title: Container(
+            padding: EdgeInsets.fromLTRB(10, 20, 0, 20),
+            color: Colors.grey,
+            height: 80,
             alignment: Alignment.centerLeft,
-            child: Padding(
-              key: widget.key,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16.0,
-                vertical: 8.0,
-              ),
-              child: Text(
-                key: widget.key,
-                """Hi there, I'm a drop-in replacement for Flutter's ExpansionTile.
-      
-      Use me any time you think your app could benefit from being just a bit more Material.
-      
-      These buttons control the next card down!""",
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium!
-                    .copyWith(fontSize: 16),
-              ),
+            child: Text(
+              name,
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20),
             ),
           ),
-        ],
+          leading: Container(
+              key: widget.key,
+              height: 200,
+              width: 100,
+              child: CachedNetworkImage(
+                  fit: BoxFit.fitHeight,
+                  key: widget.key,
+                  imageUrl: widget.pokemon.officialArtwork)),
+          children: <Widget>[
+            Divider(
+              key: widget.key,
+              thickness: 1.0,
+              height: 1.0,
+            ),
+            Align(
+              key: widget.key,
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                key: widget.key,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16.0,
+                  vertical: 8.0,
+                ),
+                child: Text(
+                  key: widget.key,
+                  """Hi there, I'm a drop-in replacement for Flutter's ExpansionTile.
+        
+        Use me any time you think your app could benefit from being just a bit more Material.
+        
+        These buttons control the next card down!""",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(fontSize: 16, color: Colors.black),
+                ),
+              ),
+            ),
+          ],
+          onExpansionChanged: (bool expanded) {},
+        ),
       ),
     );
   }
