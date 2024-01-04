@@ -133,6 +133,14 @@ class _CustomExpandableTileCardState extends State<CustomExpandableTileCard> {
               height: 200,
               width: 100,
               child: CachedNetworkImage(
+                  placeholder: (context, url) {
+                    return Center(
+                      child: Container(
+                          height: 38,
+                          width: 38,
+                          child: CircularProgressIndicator()),
+                    );
+                  },
                   fit: BoxFit.fitHeight,
                   key: widget.key,
                   imageUrl: widget.pokemon.officialArtwork)),
