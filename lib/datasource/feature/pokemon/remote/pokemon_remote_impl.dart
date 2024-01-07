@@ -41,7 +41,7 @@ class PokemonRemoteImpl {
 
       return pokemonList;
     } else {
-      await Future.delayed(Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 2));
       return await fetchPokemon(
           limit, offset); //aveces la api da error, pues reintenta.
     }

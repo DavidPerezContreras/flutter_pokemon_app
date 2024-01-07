@@ -134,8 +134,8 @@ class _CustomExpandableTileCardState extends State<CustomExpandableTileCard> {
               width: 100,
               child: CachedNetworkImage(
                   placeholder: (context, url) {
-                    return Center(
-                      child: Container(
+                    return const Center(
+                      child: SizedBox(
                           height: 38,
                           width: 38,
                           child: CircularProgressIndicator()),
