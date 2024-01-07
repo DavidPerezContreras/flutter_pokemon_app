@@ -6,6 +6,6 @@ class GetPokemonUseCase {
   final PokemonRepository pokemonRepository;
 
   Future<List<Pokemon>> getPokemonListUseCase(int limit, int offset) async {
-    return pokemonRepository.getPokemonList(limit, offset);
+    return await pokemonRepository.getPokemonList(limit, offset);
   }
 }
